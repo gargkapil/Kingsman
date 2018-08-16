@@ -97,7 +97,7 @@ while($row=$res->fetch_assoc())
             </div>
             <div class="col-md-6" data-aos="flip-right">
                 <h3>
-                    <a href="blogpost.html"><?php echo $heading; ?></a>
+                    <a href="fullnews.php?id=<?php echo $id;?> "><?php echo $heading; ?></a>
                 </h3>
                 <p class="news-agileits3"><?php echo $name ?></p>
                 <a class="btn btn-primary" href="fullnews.php?id=<?php echo $id;?> ">Read More 

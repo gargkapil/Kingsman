@@ -54,6 +54,7 @@ hr {
     border-width: 5px;
     
 } 
+
 </style>
 </head>
 <body>
@@ -64,36 +65,28 @@ include "connection.php";
   {
     $mid=$_SESSION['id'];
     $qry="select * from member where id='".$mid."'";
-$res=$conn->query($qry);
- $res1=$res->fetch_assoc();
-$name=$res1['name'];
-  mysqli_query($conn, "INSERT INTO ask (question,mid,name) 
+    $res=$conn->query($qry);
+    $res1=$res->fetch_assoc();
+    $name=$res1['name'];
+    mysqli_query($conn, "INSERT INTO ask (question,mid,name) 
     values ('".$_POST['question']."','".$mid."','".$name."')") or die(mysql_error());
 
   }
 
-
-
-
 ?>
 <?php 
-include "connection.php";
+  include "connection.php";
   if(isset($_POST['comment']))
   {
     $mid=$_SESSION['id'];
     $qry1="select * from member where id='".$mid."'";
-$result=$conn->query($qry1);
- $result1=$result->fetch_assoc();
-$name=$result1['name'];
-  
-    
-  mysqli_query($conn, "INSERT INTO comment (comment,qid,name) 
+    $result=$conn->query($qry1);
+    $result1=$result->fetch_assoc();
+    $name=$result1['name'];
+    mysqli_query($conn, "INSERT INTO comment (comment,qid,name) 
     values ('".$_POST['comm']."','".$_POST['qid']."','".$name."')") or die(mysql_error());
 
   }
-
-
-
 
 ?>
 <?php 
@@ -112,15 +105,12 @@ $name=$result1['name'];
 
                 }
 
-
-
-
           ?>
 
         
-<section class="inner-w3ls">
-    <div class="container">
-    <h3 class="text-center" data-aos="zoom-in">ASK</h3>
+<section class="inner-w3ls" >
+    <div class="container ">
+      <h3 class="text-center" data-aos="zoom-in">ASK</h3>
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
@@ -128,12 +118,13 @@ $name=$result1['name'];
                     
                 </ol>
             </div>
+          </div>
         
         <!-- /.row -->
   
     
   
-<section  >
+
 <div style=" height: auto;">
   <div align="center" style="height: auto; width: 100px;">
 
@@ -141,58 +132,52 @@ $name=$result1['name'];
  <tr> 
  <td style="width: 100px;"> 
   <form action="" method="post" >
-  
-
-  <div style=" margin-top: 30px; " class="container " ">
-    <input style="text-align: center;width: 100%;padding: 50px;" type="text" placeholder="what's in your mind" name="question" required>
+  <div style=" margin-top: 30px; " class="container " >
+    <input style="text-align: center;width: 100%;padding: 50px; border: solid 1.5px; border-radius: 20px;" type="text" placeholder="What's in your mind" name="question" required>
     <input  type="submit" name="post" value="post" style="width:100px; float: right; margin-top: 20px;" class="btn btn-info">
-
-    
   </div>
-  </section>
   </form>
+  
   <hr>  
   <section style=" margin-top:20px; ">
-  <div class="media">
     <?php 
       include "connection.php";
       $qry="select * from ask ORDER BY date DESC ";
-      
-$res=$conn->query($qry);
-while($row=$res->fetch_assoc())
-{
- $id=$row['id'];
- $question=$row['question'];
- $date=$row['date'];
-  $mid=$row['mid'];
-  $name=$row['name'];
+      $res=$conn->query($qry);
+      while($row=$res->fetch_assoc())
+      {
+       $id=$row['id'];
+       $question=$row['question'];
+       $date=$row['date'];
+        $mid=$row['mid'];
+        $name=$row['name'];
+       ?>
 
-  
-  
+  <div class="media" style="border: outset 1px; padding: 30px;border-radius: 50px 20px;"  >
+   
 
+    
 
-     ?>
-
-
-    <div class="media-left">
-      <img src="images/male.png" class="media-object" style="width:45px">
+    <div class="media-left" >
+      <img src="images/guest1.png" class="media-object" style="width:45px">
     </div>
 
     <div class="media-body">
       <h4 class="media-heading"><?php echo $name; ?> <small><i>Posted on <?php echo $date; ?></i></small></h4>
-      <p><?php echo $question ?></p>
+      <h2 style="font-weight: 900;" class="text-success"><?php echo $question ?></h2>
       
       
 
 
 
       <form method="post">
-      <input style="text-align: center;width: 100%; margin-top: 20px;" type="text" placeholder="Write a comment" name="comm" required>
+      <input style="text-align: center;width: 100%; margin-top: 10px;border-radius: 10px;" type="text" placeholder="Write a comment" name="comm" required>
       <input style="text-align: center;width: 100%; margin-top: 20px;" type="hidden" value="<?php echo $id ?>" placeholder="Write a comment" name="qid" required>
       
-      <input type="submit" name="comment" value="comment" style="width:100px; float: right;" class="btn btn-info">
-      <input type="submit" name="like" value="like" style="width:100px; float: right;" class="btn btn-info">
+      <input type="submit" name="comment" value="comment" style="width:100px; float: right;" class="btn btn-primary">
+      <input type="" name="like" value="like" style="width:100px; float: right;" class="btn btn-primary">
       </form>
+
 
 
       
@@ -216,22 +201,23 @@ while($row=$res->fetch_assoc())
 
 
                ?>
-
+         <div style="margin-top: 20px;">       
         <div class="media-left">
-          <img src="images/male.png" class="media-object" style="width:45px">
+          <img src="images/guest.png" class="media-object" style="width:45px">
         </div>
         <div class="media-body">
-          <h4 class="media-heading" style="margin-top: 20px;"><?php echo $name; ?><small><i>Posted on <?php echo $date; ?></i></small></h4>
-          <p><?php echo $comment; ?></p>
-          
-          <form method="post">
-          <input style="text-align: center;width: 100%; margin-top: ;" type="text" placeholder="Write a comment" name="postreply" required>
-          <input style="text-align: center;width: 100%; margin-top: 20px;" type="hidden" value="<?php echo $id ?>" placeholder="Write a comment" name="cid" required>
-          <div style="margin: ">
-      <input type="submit" name="reply" value="reply" style="width:100px; float: right;" class="btn btn-info">
-      <input type="submit" name="like" value="like" style="width:100px; float: right;" class="btn btn-info">
-      </div>
-    </form>
+          <h4 class="media-heading" ><?php echo $name; ?><small><i> Posted on <?php echo $date; ?></i></small></h4>
+          <h1 style="font-weight: 900"><?php echo $comment; ?></h1>
+        
+        <form method="post" >
+          <input style="text-align: center;width: 100%; margin-top:10px ; border-radius: 10px;" type="text" placeholder="Write a reply" name="postreply" required>
+          <input style="text-align: center;width: 100%; margin-top: 20px;" type="hidden" value="<?php echo $id ?>" placeholder="Write a reply" name="cid" required>
+          <div >
+          <input type="submit" name="reply" value="reply" style="width:100px; float: right;" class="btn btn-primary">
+          <input type="submit" name="like" value="like" style="width:100px; float: right;" class="btn btn-primary">
+          </div>
+        </form>
+      
 
 
           <!-- Nested media object -->
@@ -256,11 +242,11 @@ while($row=$res->fetch_assoc())
                ?>
 
             <div class="media-left">
-              <img src="images/male.png" class="media-object" style="width:45px">
+              <img src="images/guest2.png" class="media-object" style="width:45px">
             </div>
             <div class="media-body">
               <h4 class="media-heading"><?php echo $name;?><small><i>Posted on <?php echo $date;?></i></small></h4>
-              <p><?php echo $reply;?></p>
+              <h1 style="font-weight: 700"><?php echo $reply;?></h1>
             </div>
             <?php
           }
@@ -268,9 +254,10 @@ while($row=$res->fetch_assoc())
           </div>  
           
         </div>
+      </div>
         
         <!-- Nested media object -->
-        <div class="media">
+        
           
           
         <?php
@@ -283,36 +270,27 @@ while($row=$res->fetch_assoc())
     <!-- Nested media object -->  
 
     <div class="media">
-      <div class="media-left">
-      </div>
+      
       <div class="media-body">
        <hr width="5" size="500"   >
       </div>
       
+    </div>
     </div>
 
     <?php
   }
   ?>
 
-  </div>
+  
   </section>
-</div>
-
 </td>
 </tr>
 </table>
-
 </div>
-  
 </div>
 </div>
 </section>
-</div>
-</div>
-</section>
-</section>
-
 
 
 

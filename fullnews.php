@@ -89,7 +89,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>	
 			</p>
-			<a href="blogpost.html" class="blogpost-w3ls" data-aos="flip-up"><h3><?php echo $heading; ?></h3></a>
+			<a href="" class="blogpost-w3ls" data-aos="flip-up"><h3><?php echo $heading; ?></h3></a>
 			<p class="blogpost-p2" data-aos="flip-up">Posted:<?php echo $date; ?> </p>
 			<p class="blogpost-p3" data-aos="flip-up"><?php echo $fullnews; ?></p>
 			<div class="hline"></div>
@@ -163,6 +163,9 @@ while($row=$res->fetch_assoc())
 <script src='js/aos.js'></script>
 <script src="js/aos2.js"></script>
 <!-- /js files -->
+
+
+
 </body>
 </html>	
 <?php
